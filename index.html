@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lucknow Ghaziabad Goods Carrier</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0A1628;
+    --navy-mid: #132040;
+    --red: #C8102E;
+    --amber: #F5A623;
+    --white: #FFFFFF;
+    --grey: #F2F4F7;
+    --grey-mid: #E0E5EE;
+    --text-muted: #6B7A99;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+    border-bottom: 3px solid var(--red);
+  }
+  .nav-brand {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+  }
+  .nav-brand span { color: var(--amber); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+  .nav-cta {
+    background: var(--red);
+    color: var(--white) !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 4px;
+    font-weight: 600 !important;
+  }
+  .nav-cta:hover { background: #a50d25; color: var(--white) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 100px 5% 60px;
+    gap: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.015) 40px,
+      rgba(255,255,255,0.015) 80px
+    );
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--red);
+    color: var(--white);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+  }
+  .hero-badge::before { content: '●'; font-size: 0.5rem; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .hero-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+  .hero-title .accent { color: var(--amber); }
+  .hero-title .route-line {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.6rem);
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    margin: 0.5rem 0 1rem;
+  }
+  .route-arrow { color: var(--amber); font-size: 1.2em; }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.65);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 1rem 0 2rem;
+    max-width: 440px;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--red);
+    color: var(--white);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    padding: 0.8rem 1.8rem;
+    border: none; border-radius: 4px;
+    cursor: pointer; text-decoration: none;
+    transition: background .2s, transform .15s;
+  }
+  .btn-primary:hover { background: #a50d25; transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    padding: 0.8rem 1.8rem;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    cursor: pointer; text-decoration: none;
+    transition: border-color .2s, transform .15s;
+  }
+  .btn-secondary:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-2px); }
+
+  /* Route Visualizer */
+  .hero-visual {
+    display: flex; flex-direction: column; align-items: center; gap: 2rem;
+    position: relative; z-index: 1;
+  }
+  .route-track {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+  }
+  .route-track-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .route-cities {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem;
+  }
+  .city-node { text-align: center; }
+  .city-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--amber);
+    margin: 0 auto 0.4rem;
+    box-shadow: 0 0 0 4px rgba(245,166,35,0.2);
+  }
+  .city-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    white-space: nowrap;
+  }
+  .city-state { font-size: 0.7rem; color: var(--text-muted); }
+  .route-line-track {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--amber), var(--red), var(--amber));
+    position: relative;
+    overflow: hidden;
+  }
+  .truck-anim {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    font-size: 1.1rem;
+    animation: drive 3s linear infinite;
+  }
+  @keyframes drive { 0%{left:-10%} 100%{left:110%} }
+
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%; max-width: 420px;
+  }
+  .stat-item {
+    background: rgba(255,255,255,0.05);
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--amber);
+  }
+  .stat-lbl { font-size: 0.7rem; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--red);
+    padding: 0.6rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-flex; gap: 3rem;
+    animation: scroll 20s linear infinite;
+  }
+  @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .ticker-item {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    text-transform: uppercase;
+  }
+  .ticker-dot { color: var(--amber); margin: 0 0.5rem; }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 80px 5%; }
+  .section-eye {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: var(--navy);
+  }
+  .section-title span { color: var(--red); }
+  .section-sub {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 0.6rem;
+    max-width: 500px;
+  }
+  .section-head { margin-bottom: 3rem; }
+
+  /* ── COVERAGE ── */
+  .coverage { background: var(--grey); }
+  .coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .coverage-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1.8rem;
+    border-left: 4px solid var(--red);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .coverage-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .coverage-card-head {
+    display: flex; align-items: center; gap: 0.7rem;
+    margin-bottom: 1rem;
+  }
+  .coverage-icon {
+    width: 40px; height: 40px;
+    background: var(--navy);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .coverage-region {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .coverage-sub-label { font-size: 0.7rem; color: var(--text-muted); }
+  .coverage-cities {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-top: 0.8rem;
+  }
+  .city-chip {
+    background: var(--grey);
+    border: 1px solid var(--grey-mid);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* ── SERVICES ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .service-card {
+    border: 1px solid var(--grey-mid);
+    border-radius: 10px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--red);
+    transform: scaleX(0);
+    transition: transform .3s;
+  }
+  .service-card:hover { border-color: transparent; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+  .service-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+  }
+  .service-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── LOAD TYPES ── */
+  .load-section { background: var(--navy); }
+  .load-section .section-title { color: var(--white); }
+  .load-section .section-sub { color: rgba(255,255,255,0.5); }
+  .load-section .section-eye { color: var(--amber); }
+  .load-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .load-card {
+    border-radius: 10px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .load-card.part { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); }
+  .load-card.full { background: var(--red); }
+  .load-tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 1.2rem;
+  }
+  .load-card.part .load-tag { background: var(--amber); color: var(--navy); }
+  .load-card.full .load-tag { background: rgba(0,0,0,0.2); color: var(--white); }
+  .load-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
+  }
+  .load-desc { font-size: 0.9rem; line-height: 1.6; color: rgba(255,255,255,0.7); }
+  .load-features { list-style: none; margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .load-features li { font-size: 0.85rem; color: rgba(255,255,255,0.8); display: flex; gap: 0.5rem; align-items: center; }
+  .load-features li::before { content: '✓'; color: var(--amber); font-weight: 700; }
+  .load-card.full .load-features li::before { color: rgba(255,255,255,0.6); }
+
+  /* ── VEHICLES ── */
+  .vehicles { background: var(--grey); }
+  .vehicles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.2rem;
+  }
+  .vehicle-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all .2s;
+    cursor: default;
+  }
+  .vehicle-card:hover { border-color: var(--red); transform: translateY(-3px); }
+  .vehicle-emoji { font-size: 2.5rem; margin-bottom: 0.8rem; }
+  .vehicle-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--navy);
+  }
+  .vehicle-spec { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+  /* ── WE TRANSPORT ── */
+  .transport-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .transport-item {
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    padding: 1.2rem 0.8rem;
+    border: 1px solid var(--grey-mid);
+    border-radius: 8px;
+    text-align: center;
+    transition: all .2s;
+    background: var(--white);
+  }
+  .transport-item:hover { border-color: var(--red); background: #fff5f6; }
+  .transport-item .t-icon { font-size: 1.8rem; }
+  .transport-item .t-name { font-size: 0.75rem; font-weight: 600; color: var(--navy); text-transform: uppercase; letter-spacing: 0.04em; }
+
+  /* ── WHY US ── */
+  .why { background: var(--navy); }
+  .why .section-title { color: var(--white); }
+  .why .section-eye { color: var(--amber); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .why-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: background .2s;
+  }
+  .why-item:hover { background: rgba(255,255,255,0.08); }
+  .why-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .why-text-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+  }
+  .why-text-desc { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--white); }
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: start;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.2rem;
+    background: var(--grey);
+    border-radius: 8px;
+  }
+  .contact-detail-icon {
+    width: 40px; height: 40px;
+    background: var(--red);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .contact-detail-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-detail-val { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-top: 0.2rem; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--navy); letter-spacing: 0.04em; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--grey-mid);
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--navy);
+    background: var(--white);
+    transition: border-color .2s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--red); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    border-top: 3px solid var(--red);
+    padding: 3rem 5% 1.5rem;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer-brand {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .footer-brand span { color: var(--amber); }
+  .footer-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-top: 0.5rem; }
+  .footer-head {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-links a { font-size: 0.85rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color .2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 1.5rem;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ── MEDIA ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 4%; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding-top: 80px; }
+    .hero-visual { display: none; }
+    .load-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .truck-anim { animation: none; left: 50%; }
+    .ticker-inner { animation: none; }
+    .hero-badge::before { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">LUCKNOW <span>GHAZIABAD</span><br>GOODS CARRIER</div>
+  <ul class="nav-links">
+    <li><a href="#coverage">Coverage</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#vehicles">Fleet</a></li>
+    <li><a href="#contact" class="nav-cta">Get Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Daily Dispatch · Reliable Service</div>
+    <h1 class="hero-title">
+      <div class="route-line">
+        Lucknow <span class="route-arrow">⟷</span> Ghaziabad
+      </div>
+      Goods<br><span class="accent">Carrier</span>
+    </h1>
+    <p class="hero-sub">
+      Daily road freight service covering Western UP & Uttarakhand. Part load and full load options — your cargo is our responsibility.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book a Shipment</a>
+      <a href="#services" class="btn-secondary">Our Services</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="route-track">
+      <div class="route-track-label">Live Route · Daily Service</div>
+      <div class="route-cities">
+        <div class="city-node">
+          <div class="city-dot"></div>
+          <div class="city-name">Lucknow</div>
+          <div class="city-state">Uttar Pradesh</div>
+        </div>
+        <div class="route-line-track">
+          <span class="truck-anim">🚛</span>
+        </div>
+        <div class="city-node" style="text-align:right">
+          <div class="city-dot"></div>
+          <div class="city-name">Ghaziabad</div>
+          <div class="city-state">Uttar Pradesh</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">12+</div>
+        <div class="stat-lbl">Years Active</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">25+</div>
+        <div class="stat-lbl">Cities Covered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">7</div>
+        <div class="stat-lbl">Days a Week</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Daily Service</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Safe & Secure Transport</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">On-Time Delivery</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Experienced Team</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Affordable Rates</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Door-to-Door Service</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Part Load & Full Load</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Daily Service</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Safe & Secure Transport</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">On-Time Delivery</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Experienced Team</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Affordable Rates</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Door-to-Door Service</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Part Load & Full Load</span><span class="ticker-dot">◆</span>
+  </div>
+</div>
+
+<!-- COVERAGE -->
+<section id="coverage" class="coverage">
+  <div class="section-head">
+    <div class="section-eye">Where We Operate</div>
+    <h2 class="section-title">Coverage <span>Destinations</span></h2>
+    <p class="section-sub">Serving all major cities across Western Uttar Pradesh and Uttarakhand with daily dispatches.</p>
+  </div>
+  <div class="coverage-grid">
+    <div class="coverage-card">
+      <div class="coverage-card-head">
+        <div class="coverage-icon">🗺️</div>
+        <div>
+          <div class="coverage-region">Western UP</div>
+          <div class="coverage-sub-label">Coverage Zone</div>
+        </div>
+      </div>
+      <div class="coverage-cities">
+        <span class="city-chip">Meerut</span>
+        <span class="city-chip">Noida</span>
+        <span class="city-chip">Bulandshahr</span>
+        <span class="city-chip">Muzaffarnagar</span>
+        <span class="city-chip">Baghpat</span>
+        <span class="city-chip">Saharanpur</span>
+        <span class="city-chip">& More</span>
+      </div>
+    </div>
+    <div class="coverage-card">
+      <div class="coverage-card-head">
+        <div class="coverage-icon">⛰️</div>
+        <div>
+          <div class="coverage-region">Uttarakhand</div>
+          <div class="coverage-sub-label">Coverage Zone</div>
+        </div>
+      </div>
+      <div class="coverage-cities">
+        <span class="city-chip">Haridwar</span>
+        <span class="city-chip">Dehradun</span>
+        <span class="city-chip">Roorkee</span>
+        <span class="city-chip">Rudrapur</span>
+        <span class="city-chip">Haldwani</span>
+        <span class="city-chip">Kashipur</span>
+        <span class="city-chip">& More</span>
+      </div>
+    </div>
+    <div class="coverage-card">
+      <div class="coverage-card-head">
+        <div class="coverage-icon">📍</div>
+        <div>
+          <div class="coverage-region">Origin Hub</div>
+          <div class="coverage-sub-label">Starting Point</div>
+        </div>
+      </div>
+      <div style="margin-top:0.8rem">
+        <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6">All shipments originate from <strong style="color:var(--navy)">Lucknow</strong> with daily departures to all major destinations. Ghaziabad serves as the primary transit hub for NCR deliveries.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-head">
+    <div class="section-eye">What We Offer</div>
+    <h2 class="section-title">Our <span>Services</span></h2>
+    <p class="section-sub">End-to-end freight solutions designed for businesses of all sizes.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🚚</div>
+      <div class="service-title">Daily Dispatch</div>
+      <p class="service-desc">Guaranteed daily departures from Lucknow. No waiting — your goods move every single day.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔒</div>
+      <div class="service-title">Safe & Secure</div>
+      <p class="service-desc">Every shipment is handled with care and secured for the journey. We treat your cargo like our own.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⏱️</div>
+      <div class="service-title">On-Time Delivery</div>
+      <p class="service-desc">Time-sensitive cargo? We commit to deadlines and deliver on schedule, every time.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏠</div>
+      <div class="service-title">Door-to-Door</div>
+      <p class="service-desc">Full pickup and delivery service. We collect from your premises and deliver to the destination.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💰</div>
+      <div class="service-title">Affordable Rates</div>
+      <p class="service-desc">Competitive pricing for both part loads and full loads. Best rates without compromising quality.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📞</div>
+      <div class="service-title">Customer Support</div>
+      <p class="service-desc">Our experienced team is always available to assist with queries, tracking, and updates.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOAD TYPES -->
+<section class="load-section">
+  <div class="section-head">
+    <div class="section-eye">Choose Your Load Type</div>
+    <h2 class="section-title" style="color:white">Part Load <span>&</span> Full Load</h2>
+  </div>
+  <div class="load-grid">
+    <div class="load-card part">
+      <span class="load-tag">Part Load</span>
+      <div class="load-title">Small Load,<br>Big Care</div>
+      <p class="load-desc">Don't pay for a full truck when you don't need one. Ship only what you have and share the space — we handle the rest.</p>
+      <ul class="load-features">
+        <li>Pay only for your space</li>
+        <li>Consolidated with other shipments</li>
+        <li>Ideal for small businesses</li>
+        <li>Safe individual handling</li>
+      </ul>
+    </div>
+    <div class="load-card full">
+      <span class="load-tag">Full Load</span>
+      <div class="load-title">Full Truck,<br>Direct Delivery</div>
+      <p class="load-desc">Exclusive use of the full vehicle. No sharing, no stops — a dedicated truck runs directly to your destination.</p>
+      <ul class="load-features">
+        <li>Entire truck for your goods</li>
+        <li>No intermediate stops</li>
+        <li>Ideal for bulk cargo</li>
+        <li>Priority scheduling</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- VEHICLES -->
+<section id="vehicles" class="vehicles">
+  <div class="section-head">
+    <div class="section-eye">Our Fleet</div>
+    <h2 class="section-title">Types of <span>Vehicles</span></h2>
+    <p class="section-sub">A diverse fleet to handle any volume — from small consignments to heavy bulk cargo.</p>
+  </div>
+  <div class="vehicles-grid">
+    <div class="vehicle-card">
+      <div class="vehicle-emoji">🚐</div>
+      <div class="vehicle-name">Tata 407</div>
+      <div class="vehicle-spec">909 / 1109</div>
+    </div>
+    <div class="vehicle-card">
+      <div class="vehicle-emoji">🚛</div>
+      <div class="vehicle-name">14 / 17 FT</div>
+      <div class="vehicle-spec">19 FT Body</div>
+    </div>
+    <div class="vehicle-card">
+      <div class="vehicle-emoji">📦</div>
+      <div class="vehicle-name">20 FT</div>
+      <div class="vehicle-spec">Container</div>
+    </div>
+    <div class="vehicle-card">
+      <div class="vehicle-emoji">🚚</div>
+      <div class="vehicle-name">32 FT</div>
+      <div class="vehicle-spec">Multi Axle</div>
+    </div>
+    <div class="vehicle-card">
+      <div class="vehicle-emoji">🏗️</div>
+      <div class="vehicle-name">Open Body</div>
+      <div class="vehicle-spec">High Body</div>
+    </div>
+  </div>
+</section>
+
+<!-- WE TRANSPORT -->
+<section>
+  <div class="section-head">
+    <div class="section-eye">Cargo We Handle</div>
+    <h2 class="section-title">We <span>Transport</span></h2>
+    <p class="section-sub">From consumer goods to heavy machinery — we've got the right vehicle and experience for your cargo type.</p>
+  </div>
+  <div class="transport-grid">
+    <div class="transport-item"><div class="t-icon">🛒</div><div class="t-name">FMCG</div></div>
+    <div class="transport-item"><div class="t-icon">🧵</div><div class="t-name">Textile</div></div>
+    <div class="transport-item"><div class="t-icon">💻</div><div class="t-name">Electronics</div></div>
+    <div class="transport-item"><div class="t-icon">🔧</div><div class="t-name">Hardware</div></div>
+    <div class="transport-item"><div class="t-icon">🪚</div><div class="t-name">Hadiwara</div></div>
+    <div class="transport-item"><div class="t-icon">⚙️</div><div class="t-name">Machinery</div></div>
+    <div class="transport-item"><div class="t-icon">🧱</div><div class="t-name">Building Material</div></div>
+    <div class="transport-item"><div class="t-icon">🍎</div><div class="t-name">Food Items</div></div>
+    <div class="transport-item"><div class="t-icon">📦</div><div class="t-name">& Many More</div></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why">
+  <div class="section-head">
+    <div class="section-eye">Why Choose Us</div>
+    <h2 class="section-title">The <span>Difference</span></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-num">01</div>
+      <div>
+        <div class="why-text-title">Daily Service</div>
+        <div class="why-text-desc">Goods move every day of the week. No delays, no waiting for a full truck.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">02</div>
+      <div>
+        <div class="why-text-title">Timely Delivery</div>
+        <div class="why-text-desc">We understand that time is money. Our routes are optimised for on-schedule arrival.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">03</div>
+      <div>
+        <div class="why-text-title">Door to Door</div>
+        <div class="why-text-desc">Pickup from your location, delivery at the destination. Hassle-free end-to-end logistics.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">04</div>
+      <div>
+        <div class="why-text-title">Safe Handling</div>
+        <div class="why-text-desc">Experienced staff trained in proper cargo handling, loading, and securing techniques.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">05</div>
+      <div>
+        <div class="why-text-title">Affordable Charges</div>
+        <div class="why-text-desc">Transparent, competitive rates with no hidden fees. Best value in the corridor.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">06</div>
+      <div>
+        <div class="why-text-title">Trusted & Reliable</div>
+        <div class="why-text-desc">A proven track record across thousands of successful deliveries in the region.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="section-head">
+    <div class="section-eye">Get In Touch</div>
+    <h2 class="section-title">Book a <span>Shipment</span></h2>
+    <p class="section-sub">Fill in your details and our team will get back to you with a quote within the hour.</p>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-info">
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📍</div>
+        <div>
+          <div class="contact-detail-label">Head Office</div>
+          <div class="contact-detail-val">Lucknow, Uttar Pradesh, India</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📞</div>
+        <div>
+          <div class="contact-detail-label">Phone</div>
+          <div class="contact-detail-val">Call us for bookings & enquiries</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">🕐</div>
+        <div>
+          <div class="contact-detail-label">Working Hours</div>
+          <div class="contact-detail-val">Daily · 7 Days a Week</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">🚀</div>
+        <div>
+          <div class="contact-detail-label">Service</div>
+          <div class="contact-detail-val">Part Load & Full Load Available</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Full name" />
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>From (Origin)</label>
+          <input type="text" placeholder="Pickup city" />
+        </div>
+        <div class="form-group">
+          <label>To (Destination)</label>
+          <input type="text" placeholder="Delivery city" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Load Type</label>
+          <select>
+            <option>Part Load</option>
+            <option>Full Load</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Cargo Type</label>
+          <select>
+            <option>FMCG</option>
+            <option>Textile</option>
+            <option>Electronics</option>
+            <option>Hardware</option>
+            <option>Machinery</option>
+            <option>Building Material</option>
+            <option>Food Items</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Additional Details</label>
+        <textarea placeholder="Describe your shipment — weight, dimensions, any special requirements..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;font-size:1rem;padding:1rem;letter-spacing:0.08em" onclick="alert('Thank you! We will contact you shortly with a quote.')">
+        Request a Quote →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">LUCKNOW <span>GHAZIABAD</span><br>GOODS CARRIER</div>
+      <div class="footer-tagline">Your Cargo, Our Responsibility.<br>Daily freight service across Western UP & Uttarakhand.</div>
+    </div>
+    <div>
+      <div class="footer-head">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="#coverage">Coverage Areas</a></li>
+        <li><a href="#services">Our Services</a></li>
+        <li><a href="#vehicles">Fleet & Vehicles</a></li>
+        <li><a href="#contact">Book a Shipment</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-head">We Transport</div>
+      <ul class="footer-links">
+        <li><a href="#">FMCG & Retail</a></li>
+        <li><a href="#">Textile & Fabric</a></li>
+        <li><a href="#">Electronics</a></li>
+        <li><a href="#">Machinery & Hardware</a></li>
+        <li><a href="#">Building Materials</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Lucknow Ghaziabad Goods Carrier. All rights reserved.</span>
+    <span>Safe Goods · Safe Delivery</span>
+  </div>
+</footer>
+
+</body>
+</html>
